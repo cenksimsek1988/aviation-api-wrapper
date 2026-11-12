@@ -1,0 +1,14 @@
+# Runs the service in a container: docker compose up --build
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+      - "127.0.0.1:8081:8081"  # management port: this computer only
+
+  # Extension, not used yet: one Redis for several instances, to share the cache and the request budget
+  # (docs/next-steps.md, "Scaling out"). Nothing in the service connects to it today.
+  # redis:
+  #   image: redis:8-alpine
+  #   ports:
+  #     - "127.0.0.1:6379:6379"
